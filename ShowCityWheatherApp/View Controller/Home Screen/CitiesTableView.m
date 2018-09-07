@@ -10,17 +10,31 @@
 
 @interface CitiesTableView ()
 
+
+
 @end
 
 @implementation CitiesTableView
+{
+    NSString *mode;
+    UITextField *searchText;
+    
+    CoreDataManger *coreDataManger;
+    NSArray * allCities;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self setTitle:@"Cities"];
-   
     
+    [self setTitle:@"Cities"];
+    mode = @"add";
+    
+   coreDataManger =  [CoreDataManger new] ;
    
+   allCities =  [coreDataManger loadAllCities];
+
   //Edit overview of tableView
     
     UIImageView * background =  [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"homeScreen"]] ;
@@ -37,9 +51,9 @@
     
     self.navigationItem.rightBarButtonItem =
     [[UIBarButtonItem alloc]
-      initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-      target:self
-      action:@selector(Add:)] ;
+      initWithTitle:@"+" style:UIBarButtonItemStyleDone target:self action:@selector(Add:)] ;
+    
+    
 }
 
 
@@ -71,7 +85,38 @@
 
 -(IBAction)Add:(id)sender
 {
+   
     
+    if (searchText != nil){
+        if (![searchText.text isEqualToString:@""]){
+            [self.navigationItem.rightBarButtonItem setTitle:@"+"];
+            [self.view endEditing:YES];
+            UILabel *labelTemp = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 70, 30)];
+            [labelTemp setText:@"Cities"];
+            self.navigationItem.titleView = labelTemp;
+            NSLog(@"%@",[ServieLayer getApiURl:searchText.text]);
+            [ServieLayer getCityWeatherDetail:[ServieLayer getApiURl:searchText.text] withTarget:self andCallBack:@selector(responseCityWeatherDetail:)];
+
+            searchText = nil;
+        }
+        else{
+            
+            [searchText setPlaceholder:@"please enter city name!!!"];
+        }
+    }
+    else{
+         searchText = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 250, 30)];
+        [searchText setTextAlignment:NSTextAlignmentCenter];
+        [searchText.layer setBorderColor:UIColor.blackColor.CGColor];
+        [searchText.layer setBorderWidth:1];
+        [searchText.layer setCornerRadius: 5];
+        self.navigationItem.titleView = searchText;
+        
+        [self.navigationItem.rightBarButtonItem setTitle:@"Search"];
+        
+    }
+    
+ 
 }
 #pragma mark - Table view data source
 
@@ -82,7 +127,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete implementation, return the number of rows
-    return 10;
+    return allCities.count;
 }
 
 
@@ -92,24 +137,11 @@
     
     // Similar to UITableViewCell, but
     CityTableViewCell *cell = (CityTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-//    if (cell == nil) {
-//        cell = [[CityTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-//    }
-    // Just want to test, so I hardcode the data
-    cell.cityNameLabel.text = @"Testing";
+
+    cell.cityNameLabel.text = ((City*)allCities[indexPath.row]).name;
     
     [cell.cityDetailButton addTarget:self action:@selector(showHistory:) forControlEvents:UIControlEventTouchUpInside];
-
-    
-    
-  //  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    
     [cell setBackgroundColor:[UIColor clearColor]];
-    
-    
-//    // Configure the cell...
-//    [[cell textLabel] setText:@"Hellfghghfgho"];
-//
     return cell;
 }
 
@@ -135,6 +167,26 @@
 }
 
 
+-(void)responseCityWeatherDetail:(id)result{
+    NSLog(@"%@", result);
+    
+    if ([result objectForKey:@"message"] != nil){
+        [[[UIAlertView alloc] initWithTitle:@"Error" message:[result objectForKey:@"message"] delegate:Nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil] show];
+        
+    }
+    
+    else{
+        
+        
+        
+        CoreDataManger *hhh =  [CoreDataManger new] ;
+        
+        [hhh saveCity:@"london"];
+    }
+
+}
+
+
 
 /*
 // Override to support conditional editing of the table view.
@@ -144,7 +196,7 @@
 }
 */
 
-/*
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
@@ -154,7 +206,7 @@
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
+
 
 /*
 // Override to support rearranging the table view.

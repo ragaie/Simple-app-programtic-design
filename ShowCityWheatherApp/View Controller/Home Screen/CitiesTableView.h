@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "CityTableViewCell.h"
 #import "WeatherDetailsViewController.h"
-#include "HistoryTableViewController.h"
-
+#import "HistoryTableViewController.h"
+#import "ServieLayer.h"
+#import "CoreDataManger.h"
 @interface CitiesTableView : UITableViewController
 
 @end
