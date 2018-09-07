@@ -36,17 +36,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self.view setBackgroundColor:[UIColor whiteColor]];
-    
-      
-   // [self setView:   [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"detailPage"]]  ];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    [self.navigationController.navigationBar setTranslucent:YES];
 
-    
+  //  [self.view setBackgroundColor:[UIColor whiteColor]];
     [self setView:   [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"detailPage"]]  ];
-    //[self.view setBackgroundColor: [UIColor lightGrayColor]];
-   // [self.view  setAlpha:0.3];
-    
+
     [self initComponents];
     
     [_cityNameLabel setText:@"london"];
@@ -57,6 +53,12 @@
     
     [_tempImage setImage:[UIImage imageNamed:@"cloudy"]];
     [_descriptionLabel setText:@"Cloudy"];
+    
+    [_humidityLabelValue setText:@"15 %"];
+    [_windSpeedLabelValue setText:@"15 Kmh"];
+    
+    [_humidityLabel setText:@"Humidity : "];
+    [_windSpeedLabel setText:@"Wind Speed : "];
     // Do any additional setup after loading the view.
 }
 
@@ -96,9 +98,17 @@
     
     _humidityLabel = [[UILabel alloc] init];
     _humidityLabelValue = [[UILabel alloc] init];
+    [_humidityLabel setFont:[UIFont boldSystemFontOfSize:16]];
+    [_humidityLabel setTextColor:[ UIColor whiteColor]];
+    [_humidityLabelValue setFont:[UIFont boldSystemFontOfSize:16]];
+    [_humidityLabelValue setTextColor:[ UIColor whiteColor]];
     
     _windSpeedLabel = [[UILabel alloc] init];
     _windSpeedLabelValue = [[UILabel alloc] init];
+    [_windSpeedLabel setFont:[UIFont boldSystemFontOfSize:16]];
+    [_windSpeedLabel setTextColor:[ UIColor whiteColor]];
+    [_windSpeedLabelValue setFont:[UIFont boldSystemFontOfSize:16]];
+    [_windSpeedLabelValue setTextColor:[ UIColor whiteColor]];
     
     _tempImage = [[UIImageView alloc] init];
     
@@ -135,11 +145,12 @@
     _tempSimpleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     _tempImage.translatesAutoresizingMaskIntoConstraints = NO;
     _descriptionLabel.translatesAutoresizingMaskIntoConstraints = NO;
-
-    //[[_tempLabel.centerXAnchor  constraintGreaterThanOrEqualToSystemSpacingAfterAnchor:self.view.centerXAnchor multiplier:1.5] setActive:YES];
-
+    _humidityLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    _humidityLabelValue.translatesAutoresizingMaskIntoConstraints = NO;
+    _windSpeedLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    _windSpeedLabelValue.translatesAutoresizingMaskIntoConstraints = NO;
     
-   // [[_tempLabel.centerXAnchor  constraintEqualToAnchor:self.view.centerXAnchor constant:-40] setActive:YES];
+    
 
     
    
@@ -158,7 +169,7 @@
     //description label constrain
     [[_descriptionLabel.centerXAnchor  constraintEqualToAnchor:_tempLabel.centerXAnchor constant:0] setActive:YES];
     
-    [[_descriptionLabel.topAnchor  constraintEqualToAnchor:_tempLabel.topAnchor constant:0] setActive:YES];
+    [[_descriptionLabel.topAnchor  constraintEqualToAnchor:_tempLabel.bottomAnchor constant:0] setActive:YES];
     
     
     ///set image constrain
@@ -171,6 +182,21 @@
     [[_tempImage.widthAnchor constraintEqualToAnchor:self.view.widthAnchor multiplier:0.3 constant:1] setActive:YES];
     [[_tempImage.heightAnchor constraintEqualToAnchor:self.view.widthAnchor multiplier:0.3 constant:1] setActive:YES];
 
+    
+    
+    [[_humidityLabel.rightAnchor  constraintEqualToAnchor:self.view.centerXAnchor constant:0] setActive:YES];
+    [[_humidityLabel.topAnchor  constraintEqualToAnchor:_descriptionLabel.bottomAnchor constant:30] setActive:YES];
+    
+    [[_humidityLabelValue.leftAnchor  constraintEqualToAnchor:_humidityLabel.rightAnchor constant:0] setActive:YES];
+    [[_humidityLabelValue.centerYAnchor  constraintEqualToAnchor:_humidityLabel.centerYAnchor constant:0] setActive:YES];
+    
+    
+    [[_windSpeedLabel.rightAnchor  constraintEqualToAnchor:self.view.centerXAnchor constant:0] setActive:YES];
+    [[_windSpeedLabel.topAnchor  constraintEqualToAnchor:_humidityLabel.bottomAnchor constant:10] setActive:YES];
+    
+    [[_windSpeedLabelValue.leftAnchor  constraintEqualToAnchor:_windSpeedLabel.rightAnchor constant:0] setActive:YES];
+    [[_windSpeedLabelValue.centerYAnchor  constraintEqualToAnchor:_windSpeedLabel.centerYAnchor constant:0] setActive:YES];
+  
     
 }
 

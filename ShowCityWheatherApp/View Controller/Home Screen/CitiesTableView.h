@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CityTableViewCell.h"
 #import "WeatherDetailsViewController.h"
+#include "HistoryTableViewController.h"
 
 @interface CitiesTableView : UITableViewController
 

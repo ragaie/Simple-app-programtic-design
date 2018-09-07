@@ -1,114 +1,88 @@
 //
-//  CitiesTableView.m
+//  HistoryTableViewController.m
 //  ShowCityWheatherApp
 //
-//  Created by Ragaie alfy on 9/6/18.
+//  Created by Ragaie Alfy on 9/7/18.
 //  Copyright © 2018 Ragaie alfy. All rights reserved.
 //
 
-#import "CitiesTableView.h"
+#import "HistoryTableViewController.h"
 
-@interface CitiesTableView ()
+@interface HistoryTableViewController ()
 
 @end
 
-@implementation CitiesTableView
+@implementation HistoryTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self setTitle:@"Cities"];
-   
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
     
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
-    [self.navigationController.navigationBar setTranslucent:YES];
-
-  //Edit overview of tableView
-    
-    UIImageView * background =  [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"homeScreen"]] ;
-    
-    [background setAlpha:0.7];
-    [self.tableView  setBackgroundView:   background ];
-    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
-    [self.tableView setSeparatorColor: [UIColor blackColor]];
-   // [self.tableView setBackgroundColor: [UIColor lightGrayColor]];
-   // [self.tableView.backgroundView setAlpha:0.5];
-   // self.tableView.backgroundView
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     //Register cell and set setting of mask.
-    self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    [self.tableView registerClass:[CityTableViewCell class] forCellReuseIdentifier:@"Cell"];
+    //self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"CellHis"];
     
-    
-    self.navigationItem.rightBarButtonItem =
-    [[UIBarButtonItem alloc]
-      initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-      target:self
-      action:@selector(Add:)] ;
+    [self.tableView  setBackgroundColor:[UIColor whiteColor] ];
+
+    self.navigationItem.leftBarButtonItem =
+    [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(Dismiss:)] ;
 }
-
-
-
-
 
 
 
 -(void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
-  //  [self.navigationController.navigationBar setTranslucent:NO];
-
+    [self.navigationController.navigationBar setTranslucent:NO];
+    
 }
 
--(IBAction)Add:(id)sender
+
+
+
+-(IBAction)Dismiss:(id)sender
 {
+   
     
+    [self dismissViewControllerAnimated:YES completion:NULL ];
 }
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
     return 10;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-     NSString *cellIdentifier = @"Cell";
-
+    //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellHis" forIndexPath:indexPath];
     
-    // Similar to UITableViewCell, but
-    CityTableViewCell *cell = (CityTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+     NSString *CellIdentifier = @"CellHis";
+    UITableViewCell *cell ;///= [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
     if (cell == nil) {
-        cell = [[CityTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
-    // Just want to test, so I hardcode the data
-    cell.cityNameLabel.text = @"Testing";
+    //cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+
+    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     
     
+   // [cell setFocusStyle:UITableViewCellStyleSubtitle];
+      [cell.textLabel setText:@"welcome"];
+      [cell.detailTextLabel setText:@"welcome back"];
+    // Configure the cell...
     
-    
-  //  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    
-    [cell setBackgroundColor:[UIColor clearColor]];
-    
-    
-//    // Configure the cell...
-//    [[cell textLabel] setText:@"Hellfghghfgho"];
-//
     return cell;
-}
-
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    
-    return 100;
 }
 
 
@@ -116,16 +90,18 @@
     
     
     
-    
     WeatherDetailsViewController * newtViewController = [[WeatherDetailsViewController alloc] init];
     
     [self.navigationController pushViewController:newtViewController animated:YES];
     
-    
-    
 }
 
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    return 70;
+}
 
 /*
 // Override to support conditional editing of the table view.

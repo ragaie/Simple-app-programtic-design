@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
 @interface CityTableViewCell : UITableViewCell
 
 
 @property (nonatomic, strong) UILabel *cityNameLabel;
-@property (nonatomic, strong) UILabel *cityDetailButton;
+@property (nonatomic, strong) UIButton *cityDetailButton;
 
 @end

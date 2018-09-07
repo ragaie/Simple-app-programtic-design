@@ -16,6 +16,9 @@
 		8122BFB321413CE800064F2D /* CitiesTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8122BFB221413CE800064F2D /* CitiesTableView.m */; };
 		8122BFBA21414AB200064F2D /* CityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8122BFB921414AB200064F2D /* CityTableViewCell.m */; };
 		8122BFBE21416A5200064F2D /* WeatherDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8122BFBD21416A5200064F2D /* WeatherDetailsViewController.m */; };
+		DFFA12F92142915E0005ABDB /* CitiesTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFA12F82142915E0005ABDB /* CitiesTableController.m */; };
+		DFFA12FD214294380005ABDB /* HistoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFA12FC214294380005ABDB /* HistoryTableViewController.m */; };
+		DFFA13042142A0800005ABDB /* ServieLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFA13032142A0800005ABDB /* ServieLayer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +38,12 @@
 		8122BFB921414AB200064F2D /* CityTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CityTableViewCell.m; sourceTree = "<group>"; };
 		8122BFBC21416A5200064F2D /* WeatherDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherDetailsViewController.h; sourceTree = "<group>"; };
 		8122BFBD21416A5200064F2D /* WeatherDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeatherDetailsViewController.m; sourceTree = "<group>"; };
+		DFFA12F72142915E0005ABDB /* CitiesTableController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CitiesTableController.h; sourceTree = "<group>"; };
+		DFFA12F82142915E0005ABDB /* CitiesTableController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CitiesTableController.m; sourceTree = "<group>"; };
+		DFFA12FB214294380005ABDB /* HistoryTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HistoryTableViewController.h; sourceTree = "<group>"; };
+		DFFA12FC214294380005ABDB /* HistoryTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HistoryTableViewController.m; sourceTree = "<group>"; };
+		DFFA13022142A0800005ABDB /* ServieLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ServieLayer.h; sourceTree = "<group>"; };
+		DFFA13032142A0800005ABDB /* ServieLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ServieLayer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,7 +76,8 @@
 		8122BF972141378600064F2D /* ShowCityWheatherApp */ = {
 			isa = PBXGroup;
 			children = (
-				8122BFB621414A8C00064F2D /* Home Screen */,
+				DFFA12FE2142A0270005ABDB /* Sevice Layer */,
+				8122BFB621414A8C00064F2D /* View Controller */,
 				8122BF982141378600064F2D /* AppDelegate.h */,
 				8122BF992141378600064F2D /* AppDelegate.m */,
 				8122BF9B2141378600064F2D /* ViewController.h */,
@@ -81,15 +91,16 @@
 			path = ShowCityWheatherApp;
 			sourceTree = "<group>";
 		};
-		8122BFB621414A8C00064F2D /* Home Screen */ = {
+		8122BFB621414A8C00064F2D /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
+				DFFA12FF2142A03F0005ABDB /* Home Screen */,
+				DFFA12FA214294060005ABDB /* city whater history */,
 				8122BFBB21416A1500064F2D /* CityweatherDetail */,
-				8122BFB721414A9D00064F2D /* Cell */,
-				8122BFB121413CE800064F2D /* CitiesTableView.h */,
-				8122BFB221413CE800064F2D /* CitiesTableView.m */,
+				DFFA12F72142915E0005ABDB /* CitiesTableController.h */,
+				DFFA12F82142915E0005ABDB /* CitiesTableController.m */,
 			);
-			path = "Home Screen";
+			path = "View Controller";
 			sourceTree = "<group>";
 		};
 		8122BFB721414A9D00064F2D /* Cell */ = {
@@ -108,6 +119,50 @@
 				8122BFBD21416A5200064F2D /* WeatherDetailsViewController.m */,
 			);
 			path = CityweatherDetail;
+			sourceTree = "<group>";
+		};
+		DFFA12FA214294060005ABDB /* city whater history */ = {
+			isa = PBXGroup;
+			children = (
+				DFFA12FB214294380005ABDB /* HistoryTableViewController.h */,
+				DFFA12FC214294380005ABDB /* HistoryTableViewController.m */,
+			);
+			path = "city whater history";
+			sourceTree = "<group>";
+		};
+		DFFA12FE2142A0270005ABDB /* Sevice Layer */ = {
+			isa = PBXGroup;
+			children = (
+				DFFA13012142A06C0005ABDB /* New Group1 */,
+				DFFA13002142A0660005ABDB /* New Group */,
+				DFFA13022142A0800005ABDB /* ServieLayer.h */,
+				DFFA13032142A0800005ABDB /* ServieLayer.m */,
+			);
+			path = "Sevice Layer";
+			sourceTree = "<group>";
+		};
+		DFFA12FF2142A03F0005ABDB /* Home Screen */ = {
+			isa = PBXGroup;
+			children = (
+				8122BFB721414A9D00064F2D /* Cell */,
+				8122BFB121413CE800064F2D /* CitiesTableView.h */,
+				8122BFB221413CE800064F2D /* CitiesTableView.m */,
+			);
+			path = "Home Screen";
+			sourceTree = "<group>";
+		};
+		DFFA13002142A0660005ABDB /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		DFFA13012142A06C0005ABDB /* New Group1 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group1";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -180,13 +235,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFFA12FD214294380005ABDB /* HistoryTableViewController.m in Sources */,
 				8122BF9D2141378600064F2D /* ViewController.m in Sources */,
 				8122BFA32141378600064F2D /* ShowCityWheatherApp.xcdatamodeld in Sources */,
+				DFFA13042142A0800005ABDB /* ServieLayer.m in Sources */,
 				8122BFBE21416A5200064F2D /* WeatherDetailsViewController.m in Sources */,
 				8122BFBA21414AB200064F2D /* CityTableViewCell.m in Sources */,
 				8122BFAB2141378600064F2D /* main.m in Sources */,
 				8122BFB321413CE800064F2D /* CitiesTableView.m in Sources */,
 				8122BF9A2141378600064F2D /* AppDelegate.m in Sources */,
+				DFFA12F92142915E0005ABDB /* CitiesTableController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
