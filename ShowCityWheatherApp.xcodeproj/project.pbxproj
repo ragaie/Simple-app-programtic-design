@@ -9,11 +9,13 @@
 /* Begin PBXBuildFile section */
 		8122BF9A2141378600064F2D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8122BF992141378600064F2D /* AppDelegate.m */; };
 		8122BF9D2141378600064F2D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8122BF9C2141378600064F2D /* ViewController.m */; };
-		8122BFA02141378600064F2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8122BF9E2141378600064F2D /* Main.storyboard */; };
 		8122BFA32141378600064F2D /* ShowCityWheatherApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8122BFA12141378600064F2D /* ShowCityWheatherApp.xcdatamodeld */; };
 		8122BFA52141378600064F2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8122BFA42141378600064F2D /* Assets.xcassets */; };
 		8122BFA82141378600064F2D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8122BFA62141378600064F2D /* LaunchScreen.storyboard */; };
 		8122BFAB2141378600064F2D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8122BFAA2141378600064F2D /* main.m */; };
+		8122BFB321413CE800064F2D /* CitiesTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8122BFB221413CE800064F2D /* CitiesTableView.m */; };
+		8122BFBA21414AB200064F2D /* CityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8122BFB921414AB200064F2D /* CityTableViewCell.m */; };
+		8122BFBE21416A5200064F2D /* WeatherDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8122BFBD21416A5200064F2D /* WeatherDetailsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,12 +24,17 @@
 		8122BF992141378600064F2D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		8122BF9B2141378600064F2D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		8122BF9C2141378600064F2D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		8122BF9F2141378600064F2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8122BFA22141378600064F2D /* ShowCityWheatherApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ShowCityWheatherApp.xcdatamodel; sourceTree = "<group>"; };
 		8122BFA42141378600064F2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8122BFA72141378600064F2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8122BFA92141378600064F2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8122BFAA2141378600064F2D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8122BFB121413CE800064F2D /* CitiesTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CitiesTableView.h; sourceTree = "<group>"; };
+		8122BFB221413CE800064F2D /* CitiesTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CitiesTableView.m; sourceTree = "<group>"; };
+		8122BFB821414AB200064F2D /* CityTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CityTableViewCell.h; sourceTree = "<group>"; };
+		8122BFB921414AB200064F2D /* CityTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CityTableViewCell.m; sourceTree = "<group>"; };
+		8122BFBC21416A5200064F2D /* WeatherDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherDetailsViewController.h; sourceTree = "<group>"; };
+		8122BFBD21416A5200064F2D /* WeatherDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeatherDetailsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,11 +67,11 @@
 		8122BF972141378600064F2D /* ShowCityWheatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				8122BFB621414A8C00064F2D /* Home Screen */,
 				8122BF982141378600064F2D /* AppDelegate.h */,
 				8122BF992141378600064F2D /* AppDelegate.m */,
 				8122BF9B2141378600064F2D /* ViewController.h */,
 				8122BF9C2141378600064F2D /* ViewController.m */,
-				8122BF9E2141378600064F2D /* Main.storyboard */,
 				8122BFA42141378600064F2D /* Assets.xcassets */,
 				8122BFA62141378600064F2D /* LaunchScreen.storyboard */,
 				8122BFA92141378600064F2D /* Info.plist */,
@@ -72,6 +79,35 @@
 				8122BFA12141378600064F2D /* ShowCityWheatherApp.xcdatamodeld */,
 			);
 			path = ShowCityWheatherApp;
+			sourceTree = "<group>";
+		};
+		8122BFB621414A8C00064F2D /* Home Screen */ = {
+			isa = PBXGroup;
+			children = (
+				8122BFBB21416A1500064F2D /* CityweatherDetail */,
+				8122BFB721414A9D00064F2D /* Cell */,
+				8122BFB121413CE800064F2D /* CitiesTableView.h */,
+				8122BFB221413CE800064F2D /* CitiesTableView.m */,
+			);
+			path = "Home Screen";
+			sourceTree = "<group>";
+		};
+		8122BFB721414A9D00064F2D /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				8122BFB821414AB200064F2D /* CityTableViewCell.h */,
+				8122BFB921414AB200064F2D /* CityTableViewCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		8122BFBB21416A1500064F2D /* CityweatherDetail */ = {
+			isa = PBXGroup;
+			children = (
+				8122BFBC21416A5200064F2D /* WeatherDetailsViewController.h */,
+				8122BFBD21416A5200064F2D /* WeatherDetailsViewController.m */,
+			);
+			path = CityweatherDetail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -134,7 +170,6 @@
 			files = (
 				8122BFA82141378600064F2D /* LaunchScreen.storyboard in Resources */,
 				8122BFA52141378600064F2D /* Assets.xcassets in Resources */,
-				8122BFA02141378600064F2D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,7 +182,10 @@
 			files = (
 				8122BF9D2141378600064F2D /* ViewController.m in Sources */,
 				8122BFA32141378600064F2D /* ShowCityWheatherApp.xcdatamodeld in Sources */,
+				8122BFBE21416A5200064F2D /* WeatherDetailsViewController.m in Sources */,
+				8122BFBA21414AB200064F2D /* CityTableViewCell.m in Sources */,
 				8122BFAB2141378600064F2D /* main.m in Sources */,
+				8122BFB321413CE800064F2D /* CitiesTableView.m in Sources */,
 				8122BF9A2141378600064F2D /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -155,14 +193,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		8122BF9E2141378600064F2D /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8122BF9F2141378600064F2D /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		8122BFA62141378600064F2D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -283,7 +313,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 83625464HB;
 				INFOPLIST_FILE = ShowCityWheatherApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ch.ShowCityWheatherApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -296,7 +328,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 83625464HB;
 				INFOPLIST_FILE = ShowCityWheatherApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ch.ShowCityWheatherApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";

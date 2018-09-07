@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import "ViewController.h"
+#import "CitiesTableView.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
