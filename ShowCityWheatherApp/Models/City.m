@@ -11,7 +11,6 @@
 @implementation City
 
 
-//@synthesize name = _name;
 @dynamic name;
 
 @end

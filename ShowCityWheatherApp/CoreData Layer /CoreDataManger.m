@@ -38,18 +38,13 @@
     NSFetchRequest * fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"City"];
     
     NSArray * result = [_managedObjectContext executeFetchRequest:fetchRequest error:NULL];
-//
-//    for (City * item  in result){
-//
-//        NSLog(@"%@",item.name);
-//
-//    }
+
     return result;
 
 }
 
 
-
+//save city object
 - (BOOL)saveCity : (NSString*)name
 {
 
@@ -86,14 +81,10 @@
       
         return YES;
     }
-    
-    
-    
-    
-   
+  
 }
 
-
+//save wheater data
 - (void)saveCityWeatherWith : (WeatherInfo*)WeatherData
 {
     
@@ -111,7 +102,7 @@
     }
 }
 
-
+///load city with history
 -(NSArray*) loadAllCityHistorywith: (NSString*)cityName{
     
     if (_managedObjectContext ==NULL){

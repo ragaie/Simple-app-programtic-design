@@ -37,8 +37,6 @@
     [ self setDescripe:   [[[object objectForKey:@"weather"]objectAtIndex:0] objectForKey:@"description"] ];
     [ self setImageId:   [[[object objectForKey:@"weather"]objectAtIndex:0] objectForKey:@"icon"] ];
 
-    
-    
     [ self setHumidity:  [ [(NSDictionary*)[object objectForKey:@"main"] objectForKey:@"humidity"] stringValue] ];
     [ self setTemp:  [ [(NSDictionary*)[object objectForKey:@"main"] objectForKey:@"temp"] stringValue]];
 

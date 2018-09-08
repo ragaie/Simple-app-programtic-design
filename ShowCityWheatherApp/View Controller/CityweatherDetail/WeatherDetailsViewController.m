@@ -40,37 +40,14 @@
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
     [self.navigationController.navigationBar setTranslucent:YES];
 
-  //  [self.view setBackgroundColor:[UIColor whiteColor]];
     [self setView:   [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"detailPage"]]  ];
 
     [self initComponents];
     
     
-    if (_tempWeatherDetail != nil){
-        [_cityNameLabel setText:_tempWeatherDetail.cityName];
-        
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"EEE, dd-MM-yyy hh:mm"];  // Output: Sun, 001 May 2011
-        
-        NSLog( @"%@", [dateFormatter stringFromDate:_tempWeatherDetail.date]);
-
-        
-        [_dateLabel setText:[dateFormatter stringFromDate:_tempWeatherDetail.date]];
-    
-
-        [_tempLabel setText:  [NSString stringWithFormat:@"%.1lf",([_tempWeatherDetail.temp doubleValue] - 273.15)]];
-        [_tempSimpleLabel setText:@"C"];
-    
-        
-        [ServieLayer renderImagewith:[ServieLayer getImageURl:_tempWeatherDetail.imageId] andImageView:_tempImage];
-        [_descriptionLabel setText:_tempWeatherDetail.descripe];
-    
-        [_humidityLabelValue setText:   [NSString stringWithFormat:@"%@ %@",_tempWeatherDetail.humidity,@"%"]];
-        [_windSpeedLabelValue setText:[NSString stringWithFormat:@"%@   Kmh",_tempWeatherDetail.speed]];
-    }
+    [self setViewData];
     [_humidityLabel setText:@"Humidity : "];
     [_windSpeedLabel setText:@"Wind Speed : "];
-    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
@@ -78,7 +55,31 @@
     // Dispose of any resources that can be recreated.
 }
 
+//MARK : set view controller data
+-(void)setViewData{
 
+    if (_tempWeatherDetail != nil){
+        [_cityNameLabel setText:_tempWeatherDetail.cityName];
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"EEE, dd-MM-yyy hh:mm"];  // Output: Sun, 001 May 2011
+        
+        [_dateLabel setText:[dateFormatter stringFromDate:_tempWeatherDetail.date]];
+        
+        
+        [_tempLabel setText:  [NSString stringWithFormat:@"%.1lf",([_tempWeatherDetail.temp doubleValue] - 273.15)]];
+        [_tempSimpleLabel setText:@"C"];
+        
+        
+        [ServieLayer renderImagewith:[ServieLayer getImageURl:_tempWeatherDetail.imageId] andImageView:_tempImage];
+        [_descriptionLabel setText:_tempWeatherDetail.descripe];
+        
+        [_humidityLabelValue setText:   [NSString stringWithFormat:@"%@ %@",_tempWeatherDetail.humidity,@"%"]];
+        [_windSpeedLabelValue setText:[NSString stringWithFormat:@"%@   Kmh",_tempWeatherDetail.speed]];
+    }
+
+}
+//MARK init components added to screen
 -(void)initComponents{
     
     
@@ -138,6 +139,8 @@
     [self setConstraintItems];
 
 }
+
+//Set constrain for components
 -(void)setConstraintItems{
     
    // _cityNameLabel
@@ -160,12 +163,7 @@
     _humidityLabelValue.translatesAutoresizingMaskIntoConstraints = NO;
     _windSpeedLabel.translatesAutoresizingMaskIntoConstraints = NO;
     _windSpeedLabelValue.translatesAutoresizingMaskIntoConstraints = NO;
-    
-    
-
-    
-   
-    
+ 
     [[_tempSimpleLabel.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor constant:0] setActive:YES];
     [[_tempSimpleLabel.topAnchor  constraintEqualToAnchor:_dateLabel.bottomAnchor constant:20] setActive:YES];
     
@@ -186,10 +184,7 @@
     ///set image constrain
     [[_tempImage.leftAnchor constraintEqualToAnchor:_tempSimpleLabel.rightAnchor constant:5] setActive:YES];
     [[_tempImage.topAnchor  constraintEqualToAnchor:_tempSimpleLabel.bottomAnchor constant:0] setActive:YES];
-    
-   // [[_tempImage.widthAnchor constraintEqualToAnchor:self.view.widthAnchor constant:0] setActive:YES];
-   // [[_tempImage.heightAnchor  constraintEqualToAnchor:_tempLabel.heightAnchor constant:0] setActive:YES];
-    
+
     [[_tempImage.widthAnchor constraintEqualToAnchor:self.view.widthAnchor multiplier:0.3 constant:1] setActive:YES];
     [[_tempImage.heightAnchor constraintEqualToAnchor:self.view.widthAnchor multiplier:0.3 constant:1] setActive:YES];
 

@@ -86,6 +86,8 @@
     
 }
 
+
+
 -(IBAction)Add:(id)sender
 {
    
@@ -123,12 +125,10 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
     return allCities.count;
 }
 
@@ -156,21 +156,26 @@
     return 100;
 }
 
+#pragma mark - Table view delegate source
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     
     [ServieLayer getCityWeatherDetail:[ServieLayer getApiURl: ((City*)allCities[indexPath.row]).name] withTarget:self andCallBack:@selector(responseWeatherDetail:)];
 
-    
-   // WeatherDetailsViewController * newtViewController = [[WeatherDetailsViewController alloc] init];
-    
-  //  [self.navigationController pushViewController:newtViewController animated:YES];
-    
-    
-    
 }
 
+
+
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [coreDataManger deleteCityHistorywith:((City*)allCities[indexPath.row]).name];
+    
+    allCities = (NSMutableArray*)[coreDataManger loadAllCities];
+    
+    [self.tableView reloadData];
+}
 -(void)responseWeatherDetail:(id)result{
     
     
@@ -184,15 +189,7 @@
         
         [nextViewController setTempWeatherDetail:tempObject];
         [self.navigationController pushViewController:nextViewController animated:YES];
-        
-//    }else{
-//
-//
-//        [[[UIAlertView alloc] initWithTitle:@"Something wrong" message: @"please check your internet connection" delegate:Nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil] show];
-//
-//    }
-        
-    
+
     }
 
 
@@ -211,12 +208,7 @@
             WeatherInfo* tempObject = [NSEntityDescription insertNewObjectForEntityForName:@"WeatherInfo" inManagedObjectContext:coreDataManger.managedObjectContext];
 
                 [tempObject setdataWith:result];
-            
-
-            
-            
-           
-        
+   
             ///check if city name new or old.
             if([coreDataManger saveCity:[result objectForKey:@"name"]] == YES){
               //  City *tempCity = [[City alloc] init];
@@ -233,27 +225,9 @@
             [self.navigationController pushViewController:nextViewController animated:YES];
         
         }
-//    }
-//    else{
-//        
-//        [[[UIAlertView alloc] initWithTitle:@"Something wrong" message: @"please check your internet connection" delegate:Nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil] show];
-//
-//        
-//    }
 
 }
 
 
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    [coreDataManger deleteCityHistorywith:((City*)allCities[indexPath.row]).name];
-    
-    
-    
-    allCities = (NSMutableArray*)[coreDataManger loadAllCities];
-    
-    [self.tableView reloadData];
-}
 
 @end

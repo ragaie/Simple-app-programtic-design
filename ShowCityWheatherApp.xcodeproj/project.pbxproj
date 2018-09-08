@@ -17,9 +17,9 @@
 		8122BFB321413CE800064F2D /* CitiesTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8122BFB221413CE800064F2D /* CitiesTableView.m */; };
 		8122BFBA21414AB200064F2D /* CityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8122BFB921414AB200064F2D /* CityTableViewCell.m */; };
 		8122BFBE21416A5200064F2D /* WeatherDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8122BFBD21416A5200064F2D /* WeatherDetailsViewController.m */; };
+		DF0F5C07214465BF00062AFB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF0F5C06214465BF00062AFB /* SystemConfiguration.framework */; };
 		DF7652CB2142D6BF00860914 /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = DF7652CA2142D6BF00860914 /* City.m */; };
 		DF7652D42142E72200860914 /* WeatherInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DF7652D32142E72200860914 /* WeatherInfo.m */; };
-		DFFA12F92142915E0005ABDB /* CitiesTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFA12F82142915E0005ABDB /* CitiesTableController.m */; };
 		DFFA12FD214294380005ABDB /* HistoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFA12FC214294380005ABDB /* HistoryTableViewController.m */; };
 		DFFA13042142A0800005ABDB /* ServieLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFA13032142A0800005ABDB /* ServieLayer.m */; };
 		DFFA13132142BD520005ABDB /* CoreDataManger.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFA13122142BD520005ABDB /* CoreDataManger.m */; };
@@ -45,12 +45,11 @@
 		8122BFBD21416A5200064F2D /* WeatherDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeatherDetailsViewController.m; sourceTree = "<group>"; };
 		81A656B1F4E9DD9EF380A4C1 /* Pods-ShowCityWheatherApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShowCityWheatherApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ShowCityWheatherApp/Pods-ShowCityWheatherApp.debug.xcconfig"; sourceTree = "<group>"; };
 		D8EC4B8F1A68DE50B2DFB7EB /* libPods-ShowCityWheatherApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ShowCityWheatherApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF0F5C06214465BF00062AFB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		DF7652C92142D6BF00860914 /* City.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = City.h; sourceTree = "<group>"; };
 		DF7652CA2142D6BF00860914 /* City.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = City.m; sourceTree = "<group>"; };
 		DF7652D22142E72200860914 /* WeatherInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherInfo.h; sourceTree = "<group>"; };
 		DF7652D32142E72200860914 /* WeatherInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeatherInfo.m; sourceTree = "<group>"; };
-		DFFA12F72142915E0005ABDB /* CitiesTableController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CitiesTableController.h; sourceTree = "<group>"; };
-		DFFA12F82142915E0005ABDB /* CitiesTableController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CitiesTableController.m; sourceTree = "<group>"; };
 		DFFA12FB214294380005ABDB /* HistoryTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HistoryTableViewController.h; sourceTree = "<group>"; };
 		DFFA12FC214294380005ABDB /* HistoryTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HistoryTableViewController.m; sourceTree = "<group>"; };
 		DFFA13022142A0800005ABDB /* ServieLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ServieLayer.h; sourceTree = "<group>"; };
@@ -64,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF0F5C07214465BF00062AFB /* SystemConfiguration.framework in Frameworks */,
 				372772E7F94B049AF58C454C /* libPods-ShowCityWheatherApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -74,6 +74,7 @@
 		55637B1280A9989EFB7C7624 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DF0F5C06214465BF00062AFB /* SystemConfiguration.framework */,
 				D8EC4B8F1A68DE50B2DFB7EB /* libPods-ShowCityWheatherApp.a */,
 			);
 			name = Frameworks;
@@ -123,8 +124,6 @@
 				DFFA12FF2142A03F0005ABDB /* Home Screen */,
 				DFFA12FA214294060005ABDB /* city whater history */,
 				8122BFBB21416A1500064F2D /* CityweatherDetail */,
-				DFFA12F72142915E0005ABDB /* CitiesTableController.h */,
-				DFFA12F82142915E0005ABDB /* CitiesTableController.m */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -343,7 +342,6 @@
 				8122BFB321413CE800064F2D /* CitiesTableView.m in Sources */,
 				8122BF9A2141378600064F2D /* AppDelegate.m in Sources */,
 				DF7652D42142E72200860914 /* WeatherInfo.m in Sources */,
-				DFFA12F92142915E0005ABDB /* CitiesTableController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
