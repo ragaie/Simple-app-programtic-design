@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 
 
-@interface WeatherInfo : NSObject
+@interface WeatherInfo : NSManagedObject
 
 
 
@@ -23,4 +23,7 @@
 @property (nonatomic, retain) NSString * speed;
 @property (nonatomic, retain) NSString * temp;
 
+
+-(void)setdataWith : (id)object;
 @end
+

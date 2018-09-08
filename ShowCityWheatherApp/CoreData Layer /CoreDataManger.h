@@ -13,10 +13,9 @@
 #import "City.h"
 #import "WeatherInfo.h"
 @interface CoreDataManger : NSObject
-////@property AppDelegate *appDelegate;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 //
-- (void)saveCity : (NSString*)name;
+- (BOOL)saveCity : (NSString*)name;
 -(NSArray*) loadAllCities;
 -(NSArray*) loadAllCityHistorywith: (NSString*)cityName;
 - (void)saveCityWeatherWith : (WeatherInfo*)WeatherData;

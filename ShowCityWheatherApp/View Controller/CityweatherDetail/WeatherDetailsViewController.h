@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WeatherInfo.h"
+#import "ServieLayer.h"
 
+#import "WeatherInfo.h"
 @interface WeatherDetailsViewController : UIViewController
 @property (nonatomic, strong) UIImageView *tempImage;
 
@@ -26,5 +29,8 @@
 
 @property (nonatomic, strong) UILabel *windSpeedLabel;
 @property (nonatomic, strong) UILabel *windSpeedLabelValue;
+
+
+@property (nonatomic, strong) WeatherInfo *tempWeatherDetail;
 
 @end

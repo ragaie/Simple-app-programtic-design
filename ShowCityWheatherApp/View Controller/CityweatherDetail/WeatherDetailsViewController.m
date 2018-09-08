@@ -30,8 +30,8 @@
 @synthesize windSpeedLabelValue = _windSpeedLabelValue;
 
 
-
 @synthesize  tempImage = _tempImage;
+@synthesize tempWeatherDetail = _tempWeatherDetail;
 
 
 - (void)viewDidLoad {
@@ -45,18 +45,29 @@
 
     [self initComponents];
     
-    [_cityNameLabel setText:@"london"];
-    [_dateLabel setText:@"2018-8-13 23:12"];
     
-    [_tempLabel setText: @"20"];
-    [_tempSimpleLabel setText:@"C"];
+    if (_tempWeatherDetail != nil){
+        [_cityNameLabel setText:_tempWeatherDetail.cityName];
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"EEE, dd-MM-yyy hh:mm"];  // Output: Sun, 001 May 2011
+        
+        NSLog( @"%@", [dateFormatter stringFromDate:_tempWeatherDetail.date]);
+
+        
+        [_dateLabel setText:[dateFormatter stringFromDate:_tempWeatherDetail.date]];
     
-    [_tempImage setImage:[UIImage imageNamed:@"cloudy"]];
-    [_descriptionLabel setText:@"Cloudy"];
+
+        [_tempLabel setText:  [NSString stringWithFormat:@"%.1lf",([_tempWeatherDetail.temp doubleValue] - 273.15)]];
+        [_tempSimpleLabel setText:@"C"];
     
-    [_humidityLabelValue setText:@"15 %"];
-    [_windSpeedLabelValue setText:@"15 Kmh"];
+        
+        [ServieLayer renderImagewith:[ServieLayer getImageURl:_tempWeatherDetail.imageId] andImageView:_tempImage];
+        [_descriptionLabel setText:_tempWeatherDetail.descripe];
     
+        [_humidityLabelValue setText:   [NSString stringWithFormat:@"%@ %@",_tempWeatherDetail.humidity,@"%"]];
+        [_windSpeedLabelValue setText:[NSString stringWithFormat:@"%@   Kmh",_tempWeatherDetail.speed]];
+    }
     [_humidityLabel setText:@"Humidity : "];
     [_windSpeedLabel setText:@"Wind Speed : "];
     // Do any additional setup after loading the view.
@@ -81,7 +92,7 @@
     
     _tempLabel = [[UILabel alloc] init];
     
-    [_tempLabel setFont:[UIFont boldSystemFontOfSize: UIScreen.mainScreen.bounds.size.width / 4]];
+    [_tempLabel setFont:[UIFont boldSystemFontOfSize: UIScreen.mainScreen.bounds.size.width / 5]];
     [_tempLabel setTextColor:[ UIColor whiteColor]];
     
     _tempSimpleLabel = [[UILabel alloc ] init];

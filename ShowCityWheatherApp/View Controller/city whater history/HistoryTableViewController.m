@@ -14,17 +14,17 @@
 
 @implementation HistoryTableViewController
 
+CoreDataManger *coreDataManger;
+
+NSMutableArray * allHistory;
+@synthesize cityName = _cityName;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    coreDataManger =  [CoreDataManger new] ;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    //Register cell and set setting of mask.
-    //self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    allHistory =  (NSMutableArray*)[coreDataManger loadAllCityHistorywith:_cityName];
+
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"CellHis"];
     
     [self.tableView  setBackgroundColor:[UIColor whiteColor] ];
@@ -58,7 +58,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return allHistory.count;
 }
 
 
@@ -77,9 +77,17 @@
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     
     
+    WeatherInfo * tempObj = (WeatherInfo *)allHistory[indexPath.row];
+    
    // [cell setFocusStyle:UITableViewCellStyleSubtitle];
-      [cell.textLabel setText:@"welcome"];
-      [cell.detailTextLabel setText:@"welcome back"];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"EEE, dd-MM-yyy hh:mm"];  // Output: Sun, 001 May 2011
+
+      [cell.textLabel setText:[dateFormatter stringFromDate:tempObj.date]];
+    
+    
+    [NSString stringWithFormat:@"%@,%.1lf C",tempObj.descripe,([tempObj.temp doubleValue] - 273.15)];
+      [cell.detailTextLabel setText:[NSString stringWithFormat:@"%@,%.1lf C",tempObj.descripe,([tempObj.temp doubleValue] - 273.15)]];
     // Configure the cell...
     
     return cell;
@@ -90,9 +98,11 @@
     
     
     
-    WeatherDetailsViewController * newtViewController = [[WeatherDetailsViewController alloc] init];
+    WeatherDetailsViewController * nextViewController = [[WeatherDetailsViewController alloc] init];
     
-    [self.navigationController pushViewController:newtViewController animated:YES];
+    [nextViewController setTempWeatherDetail:allHistory[indexPath.row]];
+    
+    [self.navigationController pushViewController:nextViewController animated:YES];
     
 }
 

@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "WeatherDetailsViewController.h"
-
+#import "CoreDataManger.h"
 @interface HistoryTableViewController : UITableViewController
+@property (nonatomic, strong) NSString *cityName;
 
 @end

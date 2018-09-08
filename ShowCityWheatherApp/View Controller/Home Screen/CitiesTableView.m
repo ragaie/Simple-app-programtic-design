@@ -20,7 +20,7 @@
     UITextField *searchText;
     
     CoreDataManger *coreDataManger;
-    NSArray * allCities;
+    NSMutableArray * allCities;
 }
 
 
@@ -31,10 +31,7 @@
     [self setTitle:@"Cities"];
     mode = @"add";
     
-   coreDataManger =  [CoreDataManger new] ;
-   
-   allCities =  [coreDataManger loadAllCities];
-
+ 
   //Edit overview of tableView
     
     UIImageView * background =  [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"homeScreen"]] ;
@@ -66,6 +63,11 @@
     
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setTranslucent:NO];
+    
+    coreDataManger =  [CoreDataManger new] ;
+    
+    allCities =  (NSMutableArray*)[coreDataManger loadAllCities];
+    [self.tableView reloadData];
 
 }
 
@@ -78,6 +80,7 @@
     
     HistoryTableViewController *historyViewController = [[HistoryTableViewController alloc] init];
     
+    [historyViewController setCityName:   ((City*)allCities[((UIButton*)sender).tag]).name];
     [tempNav addChildViewController:historyViewController];
     [self.navigationController presentViewController:tempNav animated:YES completion:NULL];
     
@@ -94,7 +97,6 @@
             UILabel *labelTemp = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 70, 30)];
             [labelTemp setText:@"Cities"];
             self.navigationItem.titleView = labelTemp;
-            NSLog(@"%@",[ServieLayer getApiURl:searchText.text]);
             [ServieLayer getCityWeatherDetail:[ServieLayer getApiURl:searchText.text] withTarget:self andCallBack:@selector(responseCityWeatherDetail:)];
 
             searchText = nil;
@@ -141,6 +143,8 @@
     cell.cityNameLabel.text = ((City*)allCities[indexPath.row]).name;
     
     [cell.cityDetailButton addTarget:self action:@selector(showHistory:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [cell.cityDetailButton setTag:indexPath.row];
     [cell setBackgroundColor:[UIColor clearColor]];
     return cell;
 }
@@ -156,80 +160,100 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     
+    [ServieLayer getCityWeatherDetail:[ServieLayer getApiURl: ((City*)allCities[indexPath.row]).name] withTarget:self andCallBack:@selector(responseWeatherDetail:)];
+
     
+   // WeatherDetailsViewController * newtViewController = [[WeatherDetailsViewController alloc] init];
     
-    WeatherDetailsViewController * newtViewController = [[WeatherDetailsViewController alloc] init];
-    
-    [self.navigationController pushViewController:newtViewController animated:YES];
+  //  [self.navigationController pushViewController:newtViewController animated:YES];
     
     
     
 }
+
+-(void)responseWeatherDetail:(id)result{
+    
+    
+    WeatherInfo* tempObject = [NSEntityDescription insertNewObjectForEntityForName:@"WeatherInfo" inManagedObjectContext:coreDataManger.managedObjectContext];
+        [tempObject setdataWith:result];
+        
+        //save weather object for city.
+        [coreDataManger saveCityWeatherWith:tempObject];
+        //show city weather detail
+        WeatherDetailsViewController * nextViewController = [[WeatherDetailsViewController alloc] init];
+        
+        [nextViewController setTempWeatherDetail:tempObject];
+        [self.navigationController pushViewController:nextViewController animated:YES];
+        
+//    }else{
+//
+//
+//        [[[UIAlertView alloc] initWithTitle:@"Something wrong" message: @"please check your internet connection" delegate:Nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil] show];
+//
+//    }
+        
+    
+    }
+
 
 
 -(void)responseCityWeatherDetail:(id)result{
-    NSLog(@"%@", result);
+
+        if ([result objectForKey:@"message"] != nil){
+            [[[UIAlertView alloc] initWithTitle:@"Error" message:[result objectForKey:@"message"] delegate:Nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil] show];
+        
+        }
     
-    if ([result objectForKey:@"message"] != nil){
-        [[[UIAlertView alloc] initWithTitle:@"Error" message:[result objectForKey:@"message"] delegate:Nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil] show];
+        else{
+            
+          // WeatherInfo *tempObject = [[WeatherInfo alloc] init];
+
+            WeatherInfo* tempObject = [NSEntityDescription insertNewObjectForEntityForName:@"WeatherInfo" inManagedObjectContext:coreDataManger.managedObjectContext];
+
+                [tempObject setdataWith:result];
+            
+
+            
+            
+           
         
-    }
-    
-    else{
+            ///check if city name new or old.
+            if([coreDataManger saveCity:[result objectForKey:@"name"]] == YES){
+              //  City *tempCity = [[City alloc] init];
+               // [tempCity setName: [result objectForKey:@"name"]];
+               // [allCities addObject:tempCity];
+                [[[UIAlertView alloc] initWithTitle:@"Error" message:@"City already added before" delegate:Nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil] show];
+            }
+            //save weather object for city.
+            [coreDataManger saveCityWeatherWith:tempObject];
+            //show city weather detail
+            WeatherDetailsViewController * nextViewController = [[WeatherDetailsViewController alloc] init];
         
+            [nextViewController setTempWeatherDetail:tempObject];
+            [self.navigationController pushViewController:nextViewController animated:YES];
         
-        
-        CoreDataManger *hhh =  [CoreDataManger new] ;
-        
-        [hhh saveCity:@"london"];
-    }
+        }
+//    }
+//    else{
+//        
+//        [[[UIAlertView alloc] initWithTitle:@"Something wrong" message: @"please check your internet connection" delegate:Nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil] show];
+//
+//        
+//    }
 
 }
-
-
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
 
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+    
+    [coreDataManger deleteCityHistorywith:((City*)allCities[indexPath.row]).name];
+    
+    
+    
+    allCities = (NSMutableArray*)[coreDataManger loadAllCities];
+    
+    [self.tableView reloadData];
 }
-
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

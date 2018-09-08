@@ -17,7 +17,11 @@
     
     self = [super init];
     
-  
+    if (_managedObjectContext ==NULL){
+        
+        AppDelegate *del = (AppDelegate*)UIApplication.sharedApplication.delegate;
+        _managedObjectContext = del.persistentContainer.viewContext;
+    }
     
     return self;
     
@@ -46,7 +50,7 @@
 
 
 
-- (void)saveCity : (NSString*)name
+- (BOOL)saveCity : (NSString*)name
 {
 
     
@@ -56,13 +60,37 @@
         _managedObjectContext = del.persistentContainer.viewContext;
     }
 
-    City* item = [NSEntityDescription insertNewObjectForEntityForName:@"City" inManagedObjectContext:_managedObjectContext];
-    [item setName:name];
-  
-    NSError *error = nil;
-    if (![_managedObjectContext save:&error]) {
-        NSLog(@"Save Failed! %@ %@", error, [error localizedDescription]);
+    
+    
+    NSFetchRequest * fetchRequest2 = [[NSFetchRequest alloc] initWithEntityName:@"City"];
+    NSPredicate * predicate2 = [NSPredicate predicateWithFormat:@"name = %@",name];
+    [fetchRequest2 setPredicate: predicate2];
+    
+    NSArray * result2 = [_managedObjectContext executeFetchRequest:fetchRequest2 error:NULL];
+    
+    if (result2.count == 0){
+        
+        
+        City* item = [NSEntityDescription insertNewObjectForEntityForName:@"City" inManagedObjectContext:_managedObjectContext];
+        [item setName:name];
+        
+        NSError *error = nil;
+        if (![_managedObjectContext save:&error]) {
+            NSLog(@"Save Failed! %@ %@", error, [error localizedDescription]);
+        }
+        return NO;
+        
     }
+    else{
+        
+      
+        return YES;
+    }
+    
+    
+    
+    
+   
 }
 
 
@@ -76,14 +104,7 @@
         _managedObjectContext = del.persistentContainer.viewContext;
     }
     
-    WeatherInfo* item = [NSEntityDescription insertNewObjectForEntityForName:@"WeatherInfo" inManagedObjectContext:_managedObjectContext];
-    [item setDate:[NSDate new]];
-    [item setTemp:WeatherData.temp];
-    [item setSpeed:WeatherData.speed];
-    [item setCityID:WeatherData.cityID];
-    [item setImageId:WeatherData.imageId];
-    [item setCityName:WeatherData.cityName];
-    
+
     NSError *error = nil;
     if (![_managedObjectContext save:&error]) {
         NSLog(@"Save Failed! %@ %@", error, [error localizedDescription]);
@@ -100,8 +121,8 @@
     }
     NSFetchRequest * fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"WeatherInfo"];
     
-    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES];
-    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"cityName%@",cityName];
+    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO];
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"cityName = %@",cityName];
     [fetchRequest setSortDescriptors:@[sort]];
     [fetchRequest setPredicate: predicate];
     
@@ -121,7 +142,7 @@
         _managedObjectContext = del.persistentContainer.viewContext;
     }
     NSFetchRequest * fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"WeatherInfo"];
-    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"cityName%@",cityName];
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"cityName = %@",cityName];
     [fetchRequest setPredicate: predicate];
     
     
@@ -131,12 +152,12 @@
             [_managedObjectContext deleteObject:item];
         }
     NSFetchRequest * fetchRequest2 = [[NSFetchRequest alloc] initWithEntityName:@"City"];
-    NSPredicate * predicate2 = [NSPredicate predicateWithFormat:@"name%@",cityName];
-    [fetchRequest setPredicate: predicate];
+    NSPredicate * predicate2 = [NSPredicate predicateWithFormat:@"name = %@",cityName];
+    [fetchRequest2 setPredicate: predicate2];
     
-    NSArray * result2 = [_managedObjectContext executeFetchRequest:fetchRequest error:NULL];
+    NSArray * result2 = [_managedObjectContext executeFetchRequest:fetchRequest2 error:NULL];
     
-    for (City * item  in result){
+    for (City * item  in result2){
         [_managedObjectContext deleteObject:item];
         
     }
