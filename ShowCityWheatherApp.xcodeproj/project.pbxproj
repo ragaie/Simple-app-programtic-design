@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		372772E7F94B049AF58C454C /* libPods-ShowCityWheatherApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D8EC4B8F1A68DE50B2DFB7EB /* libPods-ShowCityWheatherApp.a */; };
 		8122BF9A2141378600064F2D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8122BF992141378600064F2D /* AppDelegate.m */; };
-		8122BF9D2141378600064F2D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8122BF9C2141378600064F2D /* ViewController.m */; };
 		8122BFA32141378600064F2D /* ShowCityWheatherApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8122BFA12141378600064F2D /* ShowCityWheatherApp.xcdatamodeld */; };
 		8122BFA52141378600064F2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8122BFA42141378600064F2D /* Assets.xcassets */; };
 		8122BFA82141378600064F2D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8122BFA62141378600064F2D /* LaunchScreen.storyboard */; };
@@ -30,8 +29,6 @@
 		8122BF952141378600064F2D /* ShowCityWheatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShowCityWheatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8122BF982141378600064F2D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8122BF992141378600064F2D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		8122BF9B2141378600064F2D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		8122BF9C2141378600064F2D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		8122BFA22141378600064F2D /* ShowCityWheatherApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ShowCityWheatherApp.xcdatamodel; sourceTree = "<group>"; };
 		8122BFA42141378600064F2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8122BFA72141378600064F2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -101,14 +98,11 @@
 		8122BF972141378600064F2D /* ShowCityWheatherApp */ = {
 			isa = PBXGroup;
 			children = (
-				DFFA130F2142BD320005ABDB /* CoreData Layer  */,
-				DFFA13052142BCBA0005ABDB /* Models */,
-				DFFA12FE2142A0270005ABDB /* Sevice Layer */,
 				8122BFB621414A8C00064F2D /* View Controller */,
-				8122BF982141378600064F2D /* AppDelegate.h */,
-				8122BF992141378600064F2D /* AppDelegate.m */,
-				8122BF9B2141378600064F2D /* ViewController.h */,
-				8122BF9C2141378600064F2D /* ViewController.m */,
+				DFFA130F2142BD320005ABDB /* CoreData Layer  */,
+				DFFA12FE2142A0270005ABDB /* Sevice Layer */,
+				DFFA13052142BCBA0005ABDB /* Models */,
+				DF0F5C0821446F0F00062AFB /* App delegate */,
 				8122BFA42141378600064F2D /* Assets.xcassets */,
 				8122BFA62141378600064F2D /* LaunchScreen.storyboard */,
 				8122BFA92141378600064F2D /* Info.plist */,
@@ -153,6 +147,15 @@
 				6EFD4ABA4A62028BA3C690BA /* Pods-ShowCityWheatherApp.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		DF0F5C0821446F0F00062AFB /* App delegate */ = {
+			isa = PBXGroup;
+			children = (
+				8122BF982141378600064F2D /* AppDelegate.h */,
+				8122BF992141378600064F2D /* AppDelegate.m */,
+			);
+			path = "App delegate";
 			sourceTree = "<group>";
 		};
 		DFFA12FA214294060005ABDB /* city whater history */ = {
@@ -331,7 +334,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DFFA12FD214294380005ABDB /* HistoryTableViewController.m in Sources */,
-				8122BF9D2141378600064F2D /* ViewController.m in Sources */,
 				DF7652CB2142D6BF00860914 /* City.m in Sources */,
 				8122BFA32141378600064F2D /* ShowCityWheatherApp.xcdatamodeld in Sources */,
 				DFFA13042142A0800005ABDB /* ServieLayer.m in Sources */,
